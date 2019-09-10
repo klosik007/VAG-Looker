@@ -1,7 +1,11 @@
-const fs = require('fs');
-
-function LoadFile(source){
-    return fs.readFileSync(source).toString();
+export const LoadFile = (source) =>{
+    var labelFile = new XMLHttpRequest();
+        labelFile.open("GET", source, false); //request is synchronous, otherwise I couldn't saved answer content to variable so simple
+        labelFile.send(null);
+    
+   
+        if (labelFile.readyState== 4 && labelFile.status == 200) {
+            var content = labelFile.responseText;
+            return content;
+        } else throw 'No such file!';
 }
-
-module.exports.LoadFile = LoadFile;
