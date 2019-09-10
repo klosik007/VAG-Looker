@@ -8,15 +8,22 @@ var button = document.getElementById("button").onclick = function(){
     var VAGNum = document.getElementById("VAGNum").value;
     if (!VAGNum) console.log("Insert text!");
 
-    var firstTwoLettersVAG = VAGNum.substring(0,1);
+    var firstTwoLettersVAG = VAGNum.substring(0,2);
+    console.log(firstTwoLettersVAG);
 
     var driverList = document.getElementById("driverType");
     var selectedDriver = driverList.options[driverList.selectedIndex].value;
 
-    var publicGeneralPath = `${settings.source}/Labels/${firstTwoLettersVAG}-${selectedDriver}`;
+    var publicGeneralPath = `${settings.source}/${firstTwoLettersVAG}-${selectedDriver}.lbl`;
     var file = LoadFile(publicGeneralPath);
     if (!file){
-        throw "No general file!";
+        var VAGNumFileName = VAGNum.substring(0, 11);
+        var VAGNumFileNameSource = `${settings.source}/${VAGNumFileName}.lbl`;
+        var anotherFile = LoadFile(VAGNumFileNameSource);
+        if (!anotherFile){
+            return -1;
+        }
+        console.log(anotherFile);
     }
 
     console.log(selectedDriver);
@@ -36,13 +43,16 @@ var button = document.getElementById("button").onclick = function(){
 
     var regExp1 = /(.{3}-.{3}-.{3})(.{0,5})\.(lbl|clb|LBL|CLB)/gi;//first part of redirect - name of label file in redirect file xx-yy
     var matches1 = file.match(regExp1);
-    console.log(matches1[0]);
+    var matches0Len = matches1[0].length;
+    var match2 = matches1[0].substring(0, matches0Len - 3) + matches1[0].substring(matches0Len - 3).toLowerCase();
+    console.log(match2);
 
-    if (matches1 && matches2){
-        var label = LoadFile(`${settings.source}/Labels/${matches1}`);
+    if (match2 && matches2){
+        var label = LoadFile(`${settings.source}/${match2}`);
         if (!label){
             throw "File not found!";
         }
+        console.log(label);
         //parsing the label file - TBC
     }
 };
