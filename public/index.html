@@ -6,7 +6,36 @@
         <title>VCDS Looker</title>
     </head>
     <body>
-        <div id="app"></div>
-        <script src="../src/app.js"></script>
+        <div id="app">
+                
+            <label for="VAGNum">VAG number</label>
+            <form method="POST" action="" id="theForm">
+                <input type="text" id="VAGNum" title="Type VAG number with hyphens inside" pattern="(.{3}\-.{3}\-.{3}($|\-))(.{0,3})" autofocus />
+                
+            <label for="driverType">Select driver type</label>
+            <select id="driverType">
+                <option value="">---Mostly chosen---</option>
+                <option value="01">Engine</option>
+                <option value="02">Transmission Electronics</option>
+                <option value="03">ABS</option>
+                <option value="08">AC</option>
+                <option value="09">Central electric system</option>
+                <option value="16">Steering wheel Electronics</option>
+                <option value="17">Instrument Cluster</option>
+                <option value="19">CAN Gateway</option>
+                <option value="22">4WD</option>
+                <option value="34">Pneumatic Suspension/Level Control</option>
+                <option value="44">Steering Assist</option>
+                <option value="46">Comfort System</option>
+                <option value="53">Parking Brake</option>
+                <option value="55">Headlight Aim Control</option>
+            </select>
+            <input type="button" id="button" value="Collect data" />
+        </form>
+        </div>
+        <script src="../public/bundle.js"></script>
+        <script>
+
+        </script>
     </body>
 </html>
