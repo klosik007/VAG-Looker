@@ -7,5 +7,5 @@ export const LoadFile = (source) =>{
         if (labelFile.readyState== 4 && labelFile.status == 200) {
             var content = labelFile.responseText;
             return content;
-        } else throw 'No such file!';
+        } else return false;
 }
