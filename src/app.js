@@ -18,6 +18,7 @@ var button = document.getElementById("button").onclick = function(){
     var file = LoadFile(publicGeneralPath);
     if (!file){
         var VAGNumFileName = VAGNum.substring(0, 11);
+        console.log(VAGNumFileName);
         var VAGNumFileNameSource = `${settings.source}/${VAGNumFileName}.lbl`;
         var anotherFile = LoadFile(VAGNumFileNameSource);
         if (!anotherFile){
