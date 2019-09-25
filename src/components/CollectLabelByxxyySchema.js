@@ -1,10 +1,8 @@
-import { LoadFile } from './components/LoadFile';
-import { settings } from './settings'; 
+import { LoadFile } from '../components/LoadFile';
+import { settings } from '../settings'; 
+//import { CollectLabelByVAGNum } from './CollectLabelByVAGNum';
 
-
-//console.log(VAGNum);
-
-var button = document.getElementById("button").onclick = function(){
+export const CollectLabelByxxyySchema = () =>{
     var VAGNum = document.getElementById("VAGNum").value;
     if (!VAGNum) console.log("Insert text!");
 
@@ -14,27 +12,28 @@ var button = document.getElementById("button").onclick = function(){
     var driverList = document.getElementById("driverType");
     var selectedDriver = driverList.options[driverList.selectedIndex].value;
 
+    console.log(selectedDriver);
+    console.log(VAGNum);
+
     var publicGeneralPath = `${settings.source}/${firstTwoLettersVAG}-${selectedDriver}.lbl`;
-    var file = LoadFile(publicGeneralPath);// krok 1a
+    var file = LoadFile(publicGeneralPath);
+    
     if (!file){
         var VAGNumFileName = VAGNum.substring(0, 11);
         console.log(VAGNumFileName);
-        var VAGNumFileNameSource = `${settings.source}/${VAGNumFileName}.lbl`;//krok 2
-        var anotherFile = LoadFile(VAGNumFileNameSource);//krok 2a
+        var VAGNumFileNameSource = `${settings.source}/${VAGNumFileName}.lbl`;
+        var anotherFile = LoadFile(VAGNumFileNameSource);
         if (!anotherFile){
-            throw "No such VAG num!";
+            return -1;
         }
         console.log(anotherFile);
     }
-
-    console.log(selectedDriver);
-    console.log(VAGNum);
 
     console.log(file);
     //console.log(VAGNum, driverType);
 
     //var VAGNum = "441-907-557-D";
-    var matches2 = file.match(new RegExp(VAGNum, "is"));//krok 1a
+    var matches2 = file.match(new RegExp(VAGNum, "is"));
     if (!matches2){
         throw "No such VAG num in label file!";
     }
@@ -48,7 +47,7 @@ var button = document.getElementById("button").onclick = function(){
     var match2 = matches1[0].substring(0, matches0Len - 3) + matches1[0].substring(matches0Len - 3).toLowerCase();
     console.log(match2);
 
-    if (match2 && matches2){//krok 1b
+    if (match2 && matches2){
         var label = LoadFile(`${settings.source}/${match2}`);
         if (!label){
             throw "File not found!";
@@ -57,13 +56,4 @@ var button = document.getElementById("button").onclick = function(){
         //parsing the label file - TBC
     }
 };
-
-
-
-
-// var directFileNameToLoad = settings.source + `/${match[0]}`;
-// var fileToLoad = LoadFile(directFileNameToLoad);
-
-//console.log(fileToLoad);
-
-
+ 
