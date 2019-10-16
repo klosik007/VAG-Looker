@@ -11,6 +11,5 @@ export const LoadFile = (source) =>{
         }
     } catch (error) {
         return false;
-    }
-    
+    }  
 }
