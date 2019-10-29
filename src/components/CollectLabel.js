@@ -1,10 +1,10 @@
 import { LoadFile } from './LoadFile';
 import { settings } from '../settings'; 
 import { ParseFile } from './ParseFile';
-import GetMatches  from './GetMatches';
+import { GetMatches }  from './GetMatches';
 
 const XXhyphenXXLabel = (VAGNum) =>{
-    var firstTwoLettersVAG = VAGNum.substring(0,2);
+    var firstTwoLettersVAG = VAGNum.toString().substring(0,2);
     console.log(firstTwoLettersVAG);
     
     var driverList = document.getElementById("driverType");
@@ -26,14 +26,16 @@ const XXhyphenXXLabel = (VAGNum) =>{
     //var matches2 = file.match(new RegExp(VAGNum.substring(0,7) + 
   //  `(\-[\?]{3}\-[\?]{3}|\-[\?]{2}.{1}\-[\?]{2}.{1}|\-[\?]{1}.{2}\-[\?]{1}.{2}|\-[\?]{1}.{1}[\?]\-[\?]{1}.{1}[\?]{1}|\-[\?]{1}.{2}\-[\?]{1}.{2}|\-[\?]{3}|\-.{1}[\?]{2}\-[\?]{3})`));
 
-    console.log(matches2[0]);
+    //console.log(matches2[0]);
     //
-    var regExp1 = RegExp(`^(.{3}\-.{3}\-.{3})(.{0,5})\.(lbl|clb|LBL|CLB)\,${VAGNum}`);//first part of redirect - name of label file in redirect file xx-yy
-    var regExp2 = RegExp(`^(.{3}\-.{3}\-.{3})(.{0,5})\.(lbl|clb|LBL|CLB)\,` + VAGNum.substring(0,7) + 
-    `(\-[\?]{3}\-[\?]{3}|\-[\?]{2}.{1}\-[\?]{2}.{1}|\-[\?]{1}.{2}\-[\?]{1}.{2}|\-[\?]{1}.{1}[\?]\-[\?]{1}.{1}[\?]{1}|\-[\?]{1}.{2}\-[\?]{1}.{2}|\-[\?]{3}|\-.{1}[\?]{2}\-[\?]{3})`);
-    
-    var matchesWholeVAGNum = [GetMatches(file, regExp1, 1), GetMatches(file, regExp1, 4)];
+    var regExp1 = new RegExp("^REDIRECT\,(.{3}\-.{3}\-.{3}.{0,5}\.(lbl|clb|LBL|CLB))\,"+"("+VAGNum.toString()+")", "gm");//first part of redirect - name of label file in redirect file xx-yy
+    var regExp2 = new RegExp(`^REDIRECT\,(.{3}\-.{3}\-.{3})(.{0,5})\.(lbl|clb|LBL|CLB)\,(${VAGNum.toString().substring(0,7)} 
+    (\-[\?]{3}\-[\?]{3}|\-[\?]{2}.{1}\-[\?]{2}.{1}|\-[\?]{1}.{2}\-[\?]{1}.{2}|\-[\?]{1}.{1}[\?]\-[\?]{1}.{1}[\?]{1}|\-[\?]{1}.{2}\-[\?]{1}.{2}|\-[\?]{3}|\-.{1}[\?]{2}\-[\?]{3}|\-.{3}\-[\?]{3}))`, "gm");
+    console.log(regExp1);
+    var matchesWholeVAGNum = [GetMatches(file, regExp1, 1), GetMatches(file, regExp1, 3)];
     var matchesUniversalVAGNum = [GetMatches(file, regExp2, 1), GetMatches(file, regExp2, 4)];
+    console.log(matchesWholeVAGNum);
+    console.log(matchesUniversalVAGNum);
     var matchesWholeVAGNumLen = (matchesWholeVAGNum[0]).length;
     var matchesUniversalVAGNumLen = (matchesUniversalVAGNum[0]).length;
 
@@ -41,7 +43,7 @@ const XXhyphenXXLabel = (VAGNum) =>{
     if (matchesUniversalVAGNumLen > 0){
         for(var i=0;i<matchesUniversalVAGNumLen; i++){
             if(matchesUniversalVAGNum[1][i] == VAGNum){
-                fileName = matchesWholeVAGNum[0][i];
+                fileName = matchesUniversalVAGNum[0][i];
             }
         }
     }else if (matchesWholeVAGNumLen > 0){
@@ -83,7 +85,12 @@ const VAGNumFileNameLabel = (VAGNum) =>{
 }
 
 export const CollectLabel = (VAGNum) =>{
-        if (!XXhyphenXXLabel(VAGNum)){
-            VAGNumFileNameLabel(VAGNum);
-        }
+    var VAGNum = document.getElementById("VAGNum").value;
+    if (!VAGNum) console.log("Insert text!");
+    
+    if (XXhyphenXXLabel(VAGNum)) return XXhyphenXXLabel(VAGNum)
+    else return VAGNumFileNameLabel(VAGNum);
+        // if (!XXhyphenXXLabel(VAGNum)){
+        //     return VAGNumFileNameLabel(VAGNum);
+        // }
 };
