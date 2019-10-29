@@ -30,16 +30,16 @@ export class CreateTable {
                 else return true;
             }
             case 'BS':{
-                if((this.object.BSGroupNames[0]).length == 0 ||  
-                    (this.object.BSGroupNames[1]).length == 0 || 
-                    (this.object.BSGroupNames[2]).length == 0){
+                if((this.object.BSSettingsNames[0]).length == 0 ||  
+                    (this.object.BSSettingsNames[1]).length == 0 || 
+                    (this.object.BSSettingsNames[2]).length == 0){
                         return false
                     }else return true;
             }
             case 'AD':{
-                if((this.object.AdaptGroupNames[0]).length == 0 || 
-                (this.object.AdaptGroupNames[1]).length == 0 || 
-                (this.object.AdaptGroupNames[2]).length == 0){
+                if((this.object.AdaptNames[0]).length == 0 || 
+                (this.object.AdaptNames[1]).length == 0 || 
+                (this.object.AdaptNames[2]).length == 0){
                     return false;
                 } else return true;      
             }
