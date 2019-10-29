@@ -5,7 +5,13 @@ export class CreateTableParams extends CreateTable{
         super(object, type, label);
     }
     
-    createTableParams(labelsHead, array){
+    // boldParamNameGroup(text, regex){
+    //     if (match.length > 0){
+
+    //     }
+    // }
+
+    createTableParams(array){
         var div = document.createElement("div");
     
         var res = document.body.appendChild(div).setAttribute("id", this.type);
@@ -25,7 +31,7 @@ export class CreateTableParams extends CreateTable{
             //     headerCell.innerHTML = labelsHead[i];
             //     row.appendChild(headerCell);
             // }
-console.log(labelsHead);
+
             var tableLen = array[0].length;
             var tableWidth = array.length;
             console.log(tableLen, tableWidth);
@@ -44,6 +50,20 @@ console.log(labelsHead);
             }
 
             putTable.insertAdjacentElement("beforeend", table);
+
+            var cells = document.getElementById("resultTableParams").getElementsByTagName("td");
+            var rows = document.getElementById("resultTableParams").getElementsByTagName("tr");
+            console.log(cells);
+            console.log(rows);
+            var row = 1;
+            for (var i = 0; i < cells.length; i++) {
+                if (cells[i].innerHTML == "0" || cells[i].innerHTML == "000" ) {
+                    cells[i].style.backgroundColor = "red";
+                    cells[i-1].style.backgroundColor = "red";
+                    cells[i+1].style.backgroundColor = "red";
+                }
+            }
+
         }
     }
 //}
