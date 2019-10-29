@@ -1,0 +1,8 @@
+#drop_zone{
+    border: 6px solid blue;
+    width:  700px;
+    height: 150px;
+    margin-top: 20px;
+    text-align: center;
+    overflow-y: scroll;
+}

@@ -1,0 +1,13 @@
+tr:nth-child(even){background-color: darkgray;}
+
+tr{
+    text-align: left;
+    padding: 10px;
+}
+
+th{
+    background-color: darkgreen;
+    color:white;
+    text-align: left;
+    padding: 10px;
+}
