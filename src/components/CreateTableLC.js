@@ -5,7 +5,7 @@ export class CreateTableLC extends CreateTable{
         super(object, type, label);
     }
     
-    createTableLC(labelsHead, array){
+    createTableLC(array){
         var div = document.createElement("div");
     
         var res = document.body.appendChild(div).setAttribute("id", this.type);
@@ -20,11 +20,11 @@ export class CreateTableLC extends CreateTable{
         //ar printTable = (labelsHead, array) => {
             var row = table.insertRow();
 
-            for (var i = 0; i < labelsHead.length; i++) {
-                var headerCell = document.createElement("th");
-                headerCell.innerHTML = labelsHead[i];
-                row.appendChild(headerCell);
-            }
+            // for (var i = 0; i < labelsHead.length; i++) {
+            //     var headerCell = document.createElement("th");
+            //     headerCell.innerHTML = labelsHead[i];
+            //     row.appendChild(headerCell);
+            // }
 
             var tableLen = array[0].length;
             var tableHigh = array.length;
