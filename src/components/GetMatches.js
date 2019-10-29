@@ -1,4 +1,4 @@
-export default GetMatches = (string, regex, index) => {
+export const GetMatches = (string, regex, index) => {
     index || (index = 1); // default to the first capturing group
     var matches = [];
     var match;
