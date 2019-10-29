@@ -5,7 +5,7 @@ export class CreateTableBS extends CreateTable{
         super(object, type, label);
     }
     
-    createTableBS(labelsHead, array){
+    createTableBS(array){
         var div = document.createElement("div");
     
         var res = document.body.appendChild(div).setAttribute("id", this.type);
@@ -20,11 +20,11 @@ export class CreateTableBS extends CreateTable{
         //ar printTable = (labelsHead, array) => {
             var row = table.insertRow();
 
-            for (var i = 0; i < labelsHead.length; i++) {
-                var headerCell = document.createElement("th");
-                headerCell.innerHTML = labelsHead[i];
-                row.appendChild(headerCell);
-            }
+            // for (var i = 0; i < labelsHead.length; i++) {
+            //     var headerCell = document.createElement("th");
+            //     headerCell.innerHTML = labelsHead[i];
+            //     row.appendChild(headerCell);
+            // }
 
             var tableLen = array[0].length;
             var tableHigh = array.length;
@@ -44,6 +44,15 @@ export class CreateTableBS extends CreateTable{
             }
 
             putTable.insertAdjacentElement("beforeend", table);
+
+            var cells = document.getElementById("resultTableBS").getElementsByTagName("td");
+            for (var i = 0; i < cells.length; i++) {
+                if (cells[i].innerHTML == "0" || cells[i].innerHTML == "000" ) {
+                    cells[i].style.backgroundColor = "red";
+                    cells[i-1].style.backgroundColor = "red";
+                    cells[i+1].style.backgroundColor = "red";
+                }
+            }
         }
     }
 //}
