@@ -5,7 +5,7 @@ export class CreateTableCO extends CreateTable{
         super(object, type, label);
     }
     
-    createTableCO(labelsHead, array){
+    createTableCO(array){
         var div = document.createElement("div");
     
         var res = document.body.appendChild(div).setAttribute("id", this.type);
@@ -18,13 +18,13 @@ export class CreateTableCO extends CreateTable{
         table.createCaption().innerHTML = `<b>Results: ${this.type}</b>`;
 
         //ar printTable = (labelsHead, array) => {
-            var row = table.insertRow();
+            //var row = table.insertRow();
 
-            for (var i = 0; i < labelsHead.length; i++) {
-                var headerCell = document.createElement("th");
-                headerCell.innerHTML = labelsHead[i];
-                row.appendChild(headerCell);
-            }
+            // for (var i = 0; i < labelsHead.length; i++) {
+            //     var headerCell = document.createElement("th");
+            //     headerCell.innerHTML = labelsHead[i];
+            //     row.appendChild(headerCell);
+            // }
 
             var tableLen = array[0].length;
             var tableHigh = array.length;
