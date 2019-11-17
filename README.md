@@ -1,4 +1,4 @@
-# VCDS-Looker
+# VAG-Looker
 Parser for VCDS's .lbl and .clb files into user-friendly web page
 
 # Overview
