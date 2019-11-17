@@ -6,6 +6,7 @@ import { CreateTableCO } from './CreateTableCO';
 import { CreateTableLC } from './CreateTableLC';
 import { CreateTableSA } from './CreateTableSA';
 import { CreateTableSelAC } from './CreateTableSelAC';
+import { DecToHex } from './DecToHex';
 
 export default (VAGNum, labelObject) =>{
     CreateTable.createLabelCaption(VAGNum);
@@ -17,7 +18,7 @@ export default (VAGNum, labelObject) =>{
 
     var selAC = new CreateTableSelAC(labelObject, "SelAC", VAGNum);
     if (selAC.functionsExists("SelAC")){
-        selAC.createTableSelAC([labelObject.SelACNames[0], labelObject.SelACNames[1]]);
+        selAC.createTableSelAC([labelObject.SelACNames[0], DecToHex(labelObject.SelACNames[0]), labelObject.SelACNames[2]]);
     }
 
     var basicSettingsTable = new CreateTableBS(labelObject, "BS", VAGNum);
