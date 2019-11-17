@@ -1,5 +1,6 @@
 import { GetMatches } from './GetMatches';
 
+
 export const ParseFile = (file) =>{
     // var ParametersGroupNameRegex = /^(\d{3}|\d{1})\,([0])\,(.*)/gm; //001,0,General or 1,0,Compressor
     // // var ParametersGroupNames = [
@@ -59,8 +60,10 @@ export const ParseFile = (file) =>{
     var SelectiveActivationsNamesRegex = /^\T(\d*)\,(.*)/gm; //T1543,Parking Aid Warning Chime (H15)
     var SelectiveActivationsNames = [
         GetMatches(file, SelectiveActivationsNamesRegex, 1),
+        [],
         GetMatches(file, SelectiveActivationsNamesRegex, 2)
     ];
+
 
     var SecurityAccessLoginsRegex = /(L|S)(\d\d)\,(.*)/gm; //S01,13861 = Adaptation Enabling or L01,11463 = Cruise Control System (CCS) Activation
     var SecurityNames = [
