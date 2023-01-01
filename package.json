@@ -9,9 +9,9 @@
   "author": "Przemyslaw Klos",
   "license": "ISC",
   "dependencies": {
-    "webpack": "^4.39.3"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^5.0.1"
   }
 }
